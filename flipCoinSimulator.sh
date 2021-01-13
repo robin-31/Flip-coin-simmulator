@@ -3,17 +3,24 @@ echo "welcome to flip coin problem"
 isHead=1
 headcounter=0
 tailcounter=0
-for (( i=1; i<=10; i++ ))
+maxwin=21
+while [[ $headcounter -ne $maxwin && $tailcounter -ne $maxwin ]]
 do
 	flipcoin=$((RANDOM%2))
 	if [ "$isHead" -eq "$flipcoin" ]
 	then
-		echo "it's head you are winner"
 		((headcounter++))
 	else
-		echo "it's tail you are losser"
 		((tailcounter++))
 	fi
 done
-echo $headcounter
-echo $tailcounter
+if [ $headcounter -eq $tailcounter ]
+then
+	echo "it's tie"
+elif [ $tailcounter -eq $maxwin ]
+then
+	echo "tail is winner $tailcounter"
+elif [ $headcounter -eq $maxwin ]
+then
+	echo "head is winner $headcounter"
+fi
